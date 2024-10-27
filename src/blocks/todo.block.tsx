@@ -74,6 +74,11 @@ export const TodoBlock = () => {
               task={task}
             />
           ))}
+        {!tasks.length && (
+          <div style={{textAlign: 'center'}}>
+            <h3>No tasks yet!</h3>
+          </div>
+        )}
       </div>
     </div>
   );
@@ -101,25 +106,29 @@ function TaskComponent(props: ITaskComponent) {
         display: "flex",
         flexDirection: "row",
         justifyContent: "start",
+        alignItems: "center",
         gap: 10,
       }}
     >
-      <div
+      <h4
         onClick={click}
         style={{
-          minWidth: 125,
+          width: "100%",
           margin: 0,
           padding: 0,
           cursor: "pointer",
           listStyle: "none",
-          color: checked ? "gray" : "black",
+          color: checked ? "gray" : "",
         }}
         key={task.id}
       >
         {checked ? "☑️ " : "⬜ "}
         {task.name}
-      </div>
-      <button style={{ cursor: "pointer" }} onClick={remove}>
+      </h4>
+      <button
+        style={{ cursor: "pointer", padding: 5, margin: 0 }}
+        onClick={remove}
+      >
         {" 🗑️"}
       </button>
     </div>

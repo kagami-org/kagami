@@ -1,5 +1,5 @@
 import { TodoBlock } from './blocks/todo.block'
-import "./App.css"
+import 'semantic-ui-css/semantic.min.css'
 
 export const App = () => {
   return (

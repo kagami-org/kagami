@@ -1,5 +1,22 @@
 import { FormEvent, useState } from "react";
 
+import {
+  ListItem,
+  ListHeader,
+  ListContent,
+  Image,
+  Button,
+  List,
+  Icon,
+  Checkbox,
+  Input,
+  Form,
+  Segment,
+} from "semantic-ui-react";
+
+import stroke from "../assets/todo/check-stroke.svg";
+import filled from "../assets/todo/check-filled.svg";
+
 type Task = {
   id: string;
   order: number;
@@ -41,29 +58,28 @@ export const TodoBlock = () => {
   }
 
   return (
-    <div>
+    <div
+      style={{
+        minWidth: 100,
+        maxWidth: 500,
+        width: "100%",
+        marginLeft: 20,
+        marginRight: 20,
+      }}
+    >
       <h1> My list </h1>
-      <form onSubmit={handleSubmit}>
-        <input
-          value={task}
-          onChange={(e) => {
-            setTask(e.target.value);
-          }}
-          type="text"
-          placeholder="What's on your mind"
-        />
-      </form>
-      <div
-        style={{
-          listStyle: "none",
-          padding: 0,
-          margin: 0,
-          marginTop: 20,
-          display: "flex",
-          flexDirection: "column",
-          gap: 5,
-        }}
-      >
+      <Form onSubmit={handleSubmit} style={{ width: "100%" }}>
+          <Form.Input
+            className="wfull"
+            value={task}
+            onChange={(e) => {
+              setTask(e.target.value);
+            }}
+            type="text"
+            placeholder="What's on your mind"
+          />
+      </Form>
+      <List divided verticalAlign="middle">
         {tasks
           .sort((a, b) => a.order - b.order)
           .map((task) => (
@@ -75,11 +91,11 @@ export const TodoBlock = () => {
             />
           ))}
         {!tasks.length && (
-          <div style={{textAlign: 'center'}}>
+          <div style={{ textAlign: "center" }}>
             <h3>No tasks yet!</h3>
           </div>
         )}
-      </div>
+      </List>
     </div>
   );
 };
@@ -99,6 +115,19 @@ function TaskComponent(props: ITaskComponent) {
   function remove() {
     onRemove();
   }
+
+  return (
+    <ListItem>
+      {task.checked && (
+        <ListContent floated="right">
+          <Button icon="trash" onClick={remove} size="mini"></Button>
+        </ListContent>
+      )}
+      <div style={{ height: 6 }}></div>
+      <Checkbox label={task.name} onChange={click} checked={task.checked} />
+      <div style={{ height: 6 }}></div>
+    </ListItem>
+  );
 
   return (
     <div

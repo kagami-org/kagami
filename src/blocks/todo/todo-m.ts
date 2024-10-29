@@ -7,7 +7,7 @@ export type Task = {
 };
 
 
-type Record = {
+export type Record = {
   id: {
     String: string
   },

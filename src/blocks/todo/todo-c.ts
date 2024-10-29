@@ -12,7 +12,7 @@ const useTodoController = () => {
 
   function newTask(title: string): Task {
     return {
-      task: `${Math.abs(Math.random() * 9999999999)}`,
+      task: `${Math.floor(Math.random() * 9999999999)}`,
       order: tasks.length,
       name: title,
       checked: false,
